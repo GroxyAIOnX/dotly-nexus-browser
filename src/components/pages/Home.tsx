@@ -1,75 +1,85 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Store, Code, Palette, Zap } from "lucide-react";
+import { Store, Image, MessageSquare, Code, Globe, Zap } from "lucide-react";
 
 export const Home = () => {
   const quickLinks = [
+    {
+      title: "Gemini Chat",
+      description: "Talk with AI - completely free",
+      icon: MessageSquare,
+      url: "dotly://chat",
+      color: "bg-blue-500"
+    },
+    {
+      title: "Image Generator",
+      description: "Generate images with Gemini - free",
+      icon: Image,
+      url: "dotly://imagegen",
+      color: "bg-green-500"
+    },
     {
       title: "Web Addons",
       description: "Themes, wallpapers, and extensions",
       icon: Store,
       url: "dotly://webaddons",
-      gradient: "gradient-primary"
+      color: "bg-purple-500"
+    },
+    {
+      title: "Local Ports",
+      description: "Run localhost:8081 and more",
+      icon: Code,
+      url: "dotly://localhost",
+      color: "bg-orange-500"
+    },
+    {
+      title: "XFrame Bypass",
+      description: "Access any site without restrictions",
+      icon: Globe,
+      url: "dotly://xframe",
+      color: "bg-red-500"
     },
     {
       title: "ExeCode:null",
       description: "Execute code directly in browser",
-      icon: Code,
-      url: "dotly://execode",
-      gradient: "gradient-accent"
-    },
-    {
-      title: "Theme Creator",
-      description: "Create custom themes",
-      icon: Palette,
-      url: "dotly://creator",
-      gradient: "gradient-primary"
-    },
-    {
-      title: "XFrame Bypass",
-      description: "Access protected sites",
       icon: Zap,
-      url: "dotly://xframe",
-      gradient: "gradient-accent"
+      url: "dotly://execode",
+      color: "bg-yellow-500"
     }
   ];
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-8 relative overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-glow opacity-50 animate-pulse" />
-      
-      <div className="relative z-10 text-center mb-12">
-        <h1 className="text-6xl font-bold mb-4 gradient-text">
+    <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-gradient-subtle overflow-auto">
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold mb-3 text-primary">
           Dotly Browser
         </h1>
-        <p className="text-xl text-muted-foreground">
-          Modern, secure, and infinitely customizable
+        <p className="text-lg text-muted-foreground">
+          Modern, secure, and infinitely customizable - with AI built in
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-6xl mb-8">
         {quickLinks.map((link) => {
           const Icon = link.icon;
           return (
             <Card
               key={link.title}
-              className="p-6 bg-card border-border hover:border-primary cursor-pointer transition-smooth hover:shadow-glow hover:scale-105 group"
+              className="p-6 bg-card border border-border hover:border-primary cursor-pointer transition-smooth hover:shadow-lg hover:scale-[1.02] group"
               onClick={() => window.location.href = link.url}
             >
-              <div className={`w-12 h-12 rounded-lg ${link.gradient} flex items-center justify-center mb-4 glow-effect group-hover:scale-110 transition-bounce`}>
-                <Icon className="h-6 w-6 text-white" />
+              <div className={`w-14 h-14 rounded-full ${link.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-bounce shadow-md`}>
+                <Icon className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{link.title}</h3>
-              <p className="text-muted-foreground">{link.description}</p>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">{link.title}</h3>
+              <p className="text-sm text-muted-foreground">{link.description}</p>
             </Card>
           );
         })}
       </div>
 
-      <div className="mt-12 text-center relative z-10">
+      <div className="text-center">
         <p className="text-sm text-muted-foreground">
-          Press <kbd className="px-2 py-1 bg-secondary rounded">Ctrl + T</kbd> for new tab
+          All features are completely free • No sign-up required
         </p>
       </div>
     </div>

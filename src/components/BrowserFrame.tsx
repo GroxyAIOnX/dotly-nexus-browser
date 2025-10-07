@@ -61,7 +61,7 @@ export const BrowserFrame = () => {
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Tab Bar */}
-      <div className="flex items-center gap-1 px-2 pt-2 bg-card/50 border-b border-border">
+      <div className="flex items-center gap-1 px-2 pt-2 bg-secondary/30 border-b border-border">
         <div className="flex-1 flex items-center gap-1 overflow-x-auto">
           {tabs.map(tab => (
             <BrowserTab
@@ -78,7 +78,7 @@ export const BrowserFrame = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 shrink-0"
+            className="h-8 w-8 shrink-0 rounded-full"
             onClick={addTab}
           >
             <Plus className="h-4 w-4" />
@@ -87,18 +87,18 @@ export const BrowserFrame = () => {
       </div>
 
       {/* Navigation Bar */}
-      <Card className="m-4 mb-0 p-3 flex items-center gap-2 bg-card border-border shadow-card">
+      <div className="mx-4 mt-3 p-2 flex items-center gap-2 bg-card border border-border rounded-full shadow-md">
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon" className="h-8 w-8">
+          <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
             <ArrowLeft className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
+          <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
             <ArrowRight className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleNavigate(activeTab?.url)}>
+          <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={() => handleNavigate(activeTab?.url)}>
             <RotateCw className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleNavigate("dotly://home")}>
+          <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={() => handleNavigate("dotly://home")}>
             <Home className="h-4 w-4" />
           </Button>
         </div>
@@ -109,13 +109,13 @@ export const BrowserFrame = () => {
             onChange={(e) => setUrlInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleNavigate()}
             placeholder="Search or enter URL..."
-            className="w-full bg-secondary border-border focus:border-primary transition-smooth"
+            className="w-full rounded-full bg-secondary/50 border-0 focus-visible:ring-2 focus-visible:ring-primary transition-smooth"
           />
         </div>
-      </Card>
+      </div>
 
       {/* Content Area */}
-      <div className="flex-1 m-4 mt-2">
+      <div className="flex-1 m-4 mt-2 overflow-hidden rounded-lg">
         <WebView url={activeTab?.url || "dotly://home"} />
       </div>
     </div>
